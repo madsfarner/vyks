@@ -23,7 +23,7 @@ namespace VYKS.Model
         [Required(ErrorMessage = "Tittel for spørsmålet må oppgis")]
         public string Tittel { get; set; }
         public string Beskrivelse { get; set; }
-        [Required(ErrorMessage = "En kategori for spørsmålet må oppgies")]
+        [Required(ErrorMessage = "En kategori for spørsmålet må oppgis")]
         public int KategoriId { get; set; }
     }
 
