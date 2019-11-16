@@ -112,6 +112,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var header_1 = __webpack_require__(/*! ./header */ "./header.tsx");
 var sporsmal_1 = __webpack_require__(/*! ./sporsmal */ "./sporsmal.tsx");
 var sok_1 = __webpack_require__(/*! ./sok */ "./sok.tsx");
 var nyttSporsmal_1 = __webpack_require__(/*! ./nyttSporsmal */ "./nyttSporsmal.tsx");
@@ -122,19 +123,8 @@ var Hello = /** @class */ (function (_super) {
     }
     Hello.prototype.render = function () {
         return (React.createElement(react_router_dom_1.BrowserRouter, null,
-            React.createElement("script", { src: "https://code.jquery.com/jquery-3.3.1.slim.min.js", integrity: "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", crossorigin: "anonymous" }),
-            React.createElement("script", { src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js", integrity: "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", crossorigin: "anonymous" }),
-            React.createElement("script", { src: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", integrity: "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", crossorigin: "anonymous" }),
-            React.createElement("div", null,
-                React.createElement("nav", null,
-                    React.createElement("ul", null,
-                        React.createElement("li", null,
-                            React.createElement(react_router_dom_1.Link, { to: "/" }, "Home")),
-                        React.createElement("li", null,
-                            React.createElement(react_router_dom_1.Link, { to: "/sok" }, "S\u00F8k")),
-                        React.createElement("li", null,
-                            React.createElement("button", { type: "button", class: "btn btn-danger" }, "Danger"),
-                            React.createElement(react_router_dom_1.Link, { to: "/nyttSporsmal" }, "Nytt Sp\u00F8rsm\u00E5l")))),
+            React.createElement("div", { className: "container" },
+                React.createElement(header_1.default, null),
                 React.createElement(react_router_dom_1.Switch, null,
                     React.createElement(react_router_dom_1.Route, { path: "/nyttSporsmal" },
                         React.createElement(nyttSporsmal_1.default, null)),
@@ -196,6 +186,76 @@ exports.Users = Users;
     }
 }*/
 ReactDOM.render(React.createElement(Hello, null), document.getElementById('root'));
+
+
+/***/ }),
+
+/***/ "./header.tsx":
+/*!********************!*\
+  !*** ./header.tsx ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var Link = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js").Link;
+var Header = /** @class */ (function (_super) {
+    __extends(Header, _super);
+    function Header(props) {
+        var _this = _super.call(this, props) || this;
+        _this.handleSubmit = function (e) {
+            e.preventDefault();
+            _this.setState({ submitted: true });
+            var sokeTekst = _this.state.sokeTekst;
+            if (!sokeTekst) {
+                return;
+            }
+        };
+        _this.handleChange = function (e) {
+            var tekst = e.target.value;
+            _this.setState({ sokeTekst: tekst });
+        };
+        _this.state = {
+            sokeTekst: "",
+            submitted: false
+        };
+        return _this;
+    }
+    Header.prototype.render = function () {
+        return (React.createElement("div", { className: "row" },
+            React.createElement("div", { className: "col-12" },
+                React.createElement("nav", { className: "navbar navbar-expand-lg" },
+                    React.createElement("div", null,
+                        React.createElement(Link, { to: "/" },
+                            React.createElement("img", { className: "img-fluid float-left", src: "./assets/vylogo.jpg" }))),
+                    React.createElement("ul", { className: "navbar-nav mr-auto" },
+                        React.createElement("li", { className: "nav-item" },
+                            React.createElement(Link, { to: "/", className: "nav-link" }, "FAQ - Sp\u00F8rsm\u00E5l")),
+                        React.createElement("li", { className: "nav-item" },
+                            React.createElement(Link, { to: "/nyttSporsmal", className: "nav-link" }, "Nytt Sp\u00F8rsm\u00E5l"))),
+                    React.createElement("form", { className: "form-inline my-2 my-lg-0", onSubmit: this.handleSubmit },
+                        React.createElement("input", { className: "form-control mr-sm-2", type: "search", placeholder: "S\u00F8ketekst", "aria-label": "S\u00F8k", onChange: this.handleChange, invalid: this.submitted && !this.sokeTekst }),
+                        React.createElement("button", { className: "btn btn-outline-success my-2 my-sm-0", type: "submit" }, "S\u00F8k"))))));
+    };
+    return Header;
+}(React.Component));
+exports.default = Header;
 
 
 /***/ }),

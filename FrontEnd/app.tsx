@@ -8,6 +8,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import Header from "./header";
 import Sporsmal from "./sporsmal";
 import Sok from "./sok";
 import NyttSporsmal from "./nyttSporsmal";
@@ -16,25 +17,8 @@ export class Hello extends React.Component {
     render() {
         return (
             <Router>
-
-                <div>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/sok">Søk</Link>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-danger">Danger</button>
-                                <Link to="/nyttSporsmal">Nytt Spørsmål</Link>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+                <div className="container">
+                    <Header />
                     <Switch>
                         <Route path="/nyttSporsmal">
                             <NyttSporsmal />
