@@ -111,19 +111,37 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-var Route = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js").Route;
-var BrowserRoute = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js").BrowserRoute;
-//import Kategorier from "./kategorier";
-//import Test from "./test";
-//var Kategorier = require('./kategorier');
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var sporsmal_1 = __webpack_require__(/*! ./sporsmal */ "./sporsmal.tsx");
+var sok_1 = __webpack_require__(/*! ./sok */ "./sok.tsx");
+var nyttSporsmal_1 = __webpack_require__(/*! ./nyttSporsmal */ "./nyttSporsmal.tsx");
 var Hello = /** @class */ (function (_super) {
     __extends(Hello, _super);
     function Hello() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Hello.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("h1", null, "Welcome to React!!")));
+        return (React.createElement(react_router_dom_1.BrowserRouter, null,
+            React.createElement("script", { src: "https://code.jquery.com/jquery-3.3.1.slim.min.js", integrity: "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", crossorigin: "anonymous" }),
+            React.createElement("script", { src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js", integrity: "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", crossorigin: "anonymous" }),
+            React.createElement("script", { src: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", integrity: "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", crossorigin: "anonymous" }),
+            React.createElement("div", null,
+                React.createElement("nav", null,
+                    React.createElement("ul", null,
+                        React.createElement("li", null,
+                            React.createElement(react_router_dom_1.Link, { to: "/" }, "Home")),
+                        React.createElement("li", null,
+                            React.createElement(react_router_dom_1.Link, { to: "/sok" }, "S\u00F8k")),
+                        React.createElement("li", null,
+                            React.createElement("button", { type: "button", class: "btn btn-danger" }, "Danger"),
+                            React.createElement(react_router_dom_1.Link, { to: "/nyttSporsmal" }, "Nytt Sp\u00F8rsm\u00E5l")))),
+                React.createElement(react_router_dom_1.Switch, null,
+                    React.createElement(react_router_dom_1.Route, { path: "/nyttSporsmal" },
+                        React.createElement(nyttSporsmal_1.default, null)),
+                    React.createElement(react_router_dom_1.Route, { path: "/sok" },
+                        React.createElement(sok_1.default, null)),
+                    React.createElement(react_router_dom_1.Route, { path: "/" },
+                        React.createElement(sporsmal_1.default, null))))));
     };
     return Hello;
 }(React.Component));
@@ -140,6 +158,30 @@ var Home = /** @class */ (function (_super) {
     return Home;
 }(React.Component));
 exports.Home = Home;
+var About = /** @class */ (function (_super) {
+    __extends(About, _super);
+    function About() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    About.prototype.render = function () {
+        return (React.createElement("div", null,
+            React.createElement("h1", null, "About")));
+    };
+    return About;
+}(React.Component));
+exports.About = About;
+var Users = /** @class */ (function (_super) {
+    __extends(Users, _super);
+    function Users() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Users.prototype.render = function () {
+        return (React.createElement("div", null,
+            React.createElement("h1", null, "Users")));
+    };
+    return Users;
+}(React.Component));
+exports.Users = Users;
 /*export class App extends React.Component {
     render() {
         return (
@@ -36089,6 +36131,125 @@ try {
 // easier to handle this case. if(!global) { ...}
 
 module.exports = g;
+
+
+/***/ }),
+
+/***/ "./nyttSporsmal.tsx":
+/*!**************************!*\
+  !*** ./nyttSporsmal.tsx ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var NyttSporsmal = /** @class */ (function (_super) {
+    __extends(NyttSporsmal, _super);
+    function NyttSporsmal() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    NyttSporsmal.prototype.render = function () {
+        return (React.createElement("h1", null, " Nytt Sp\u00F8rsm\u00E5l "));
+    };
+    return NyttSporsmal;
+}(React.Component));
+exports.default = NyttSporsmal;
+
+
+/***/ }),
+
+/***/ "./sok.tsx":
+/*!*****************!*\
+  !*** ./sok.tsx ***!
+  \*****************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var Sok = /** @class */ (function (_super) {
+    __extends(Sok, _super);
+    function Sok() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Sok.prototype.render = function () {
+        return (React.createElement("h1", null, " S\u00F8k "));
+    };
+    return Sok;
+}(React.Component));
+exports.default = Sok;
+
+
+/***/ }),
+
+/***/ "./sporsmal.tsx":
+/*!**********************!*\
+  !*** ./sporsmal.tsx ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var Sporsmal = /** @class */ (function (_super) {
+    __extends(Sporsmal, _super);
+    function Sporsmal() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Sporsmal.prototype.render = function () {
+        return (React.createElement("div", null,
+            React.createElement("h1", null, " Kategorier "),
+            React.createElement("h2", null, " Sp\u00F8rsmal ")));
+    };
+    return Sporsmal;
+}(React.Component));
+exports.default = Sporsmal;
 
 
 /***/ })

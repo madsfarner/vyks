@@ -46,10 +46,11 @@
     <TypeScriptCompile Include="app.tsx">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="kategorier.tsx">
+    <TypeScriptCompile Include="nyttSporsmal.tsx" />
+    <TypeScriptCompile Include="sporsmal.tsx">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="test.tsx" />
+    <TypeScriptCompile Include="sok.tsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />

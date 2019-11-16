@@ -1,21 +1,53 @@
-declare var require: any
+﻿declare var require: any
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var { Route } = require('react-router-dom');
-var { BrowserRoute } = require('react-router-dom');
-//import Kategorier from "./kategorier";
-//import Test from "./test";
-//var Kategorier = require('./kategorier');
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import Sporsmal from "./sporsmal";
+import Sok from "./sok";
+import NyttSporsmal from "./nyttSporsmal";
 
 export class Hello extends React.Component {
     render() {
         return (
-            <div>
-                <h1>Welcome to React!!</h1>
-                
-            </div>
+            <Router>
 
+                <div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/sok">Søk</Link>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-danger">Danger</button>
+                                <Link to="/nyttSporsmal">Nytt Spørsmål</Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+                    <Switch>
+                        <Route path="/nyttSporsmal">
+                            <NyttSporsmal />
+                        </Route>
+                        <Route path="/sok">
+                            <Sok />
+                        </Route>
+                        <Route path="/">
+                            <Sporsmal />
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
         );
     }
 }
@@ -25,6 +57,26 @@ export class Home extends React.Component {
         return (
             <div>
                 <h1>Home</h1>
+            </div>
+
+        );
+    }
+}
+export class About extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>About</h1>
+            </div>
+
+        );
+    }
+}
+export class Users extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>Users</h1>
             </div>
 
         );
