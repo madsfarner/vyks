@@ -1,25 +1,21 @@
 ﻿declare var require: any
 
 var React = require('react');
-var { Link } = require('react-router-dom');
+var { Link, withRouter } = require('react-router-dom');
 
-export default class Header extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             sokeTekst: "",
-            submitted: false
         };
     }
 
     handleSubmit = e => {
         e.preventDefault();
-        this.setState({ submitted: true });
         const { sokeTekst } = this.state;
-        if (!sokeTekst) {
-            return;
-        }
-
+        const sokUrl = "/sok/tekst=" + sokeTekst;
+        this.props.history.push(sokUrl);
     }
 
     handleChange = e => {
@@ -56,9 +52,10 @@ export default class Header extends React.Component {
                                 placeholder="Søketekst"
                                 aria-label="Søk"
                                 onChange={this.handleChange}
-                                invalid={this.submitted && !this.sokeTekst}
+                                invalid="true"
                             />
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Søk</button>
+                            <button
+                                className="btn btn-outline-secondary my-2 my-sm-0" type="submit">Søk</button>
                         </form>
 
 
@@ -68,3 +65,5 @@ export default class Header extends React.Component {
         );
     }
 }
+
+export default withRouter(Header);

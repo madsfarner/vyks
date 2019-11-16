@@ -116,76 +116,28 @@ var header_1 = __webpack_require__(/*! ./header */ "./header.tsx");
 var sporsmal_1 = __webpack_require__(/*! ./sporsmal */ "./sporsmal.tsx");
 var sok_1 = __webpack_require__(/*! ./sok */ "./sok.tsx");
 var nyttSporsmal_1 = __webpack_require__(/*! ./nyttSporsmal */ "./nyttSporsmal.tsx");
-var Hello = /** @class */ (function (_super) {
-    __extends(Hello, _super);
-    function Hello() {
+var App = /** @class */ (function (_super) {
+    __extends(App, _super);
+    function App() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Hello.prototype.render = function () {
+    App.prototype.render = function () {
         return (React.createElement(react_router_dom_1.BrowserRouter, null,
             React.createElement("div", { className: "container" },
                 React.createElement(header_1.default, null),
                 React.createElement(react_router_dom_1.Switch, null,
-                    React.createElement(react_router_dom_1.Route, { path: "/nyttSporsmal" },
+                    React.createElement(react_router_dom_1.Route, { exact: true, path: "/nyttSporsmal" },
                         React.createElement(nyttSporsmal_1.default, null)),
-                    React.createElement(react_router_dom_1.Route, { path: "/sok" },
+                    React.createElement(react_router_dom_1.Route, { exact: true, path: "/sok/:tekst" },
                         React.createElement(sok_1.default, null)),
                     React.createElement(react_router_dom_1.Route, { path: "/" },
                         React.createElement(sporsmal_1.default, null))))));
     };
-    return Hello;
+    return App;
 }(React.Component));
-exports.Hello = Hello;
-var Home = /** @class */ (function (_super) {
-    __extends(Home, _super);
-    function Home() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Home.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("h1", null, "Home")));
-    };
-    return Home;
-}(React.Component));
-exports.Home = Home;
-var About = /** @class */ (function (_super) {
-    __extends(About, _super);
-    function About() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    About.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("h1", null, "About")));
-    };
-    return About;
-}(React.Component));
-exports.About = About;
-var Users = /** @class */ (function (_super) {
-    __extends(Users, _super);
-    function Users() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Users.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("h1", null, "Users")));
-    };
-    return Users;
-}(React.Component));
-exports.Users = Users;
-/*export class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>app page</h1>
-                <BrowserRoute>
-                    <Route exact path="/kat" component={Kategorier} />
-                    <Route exact path="/test" component={Test} />
-                </BrowserRoute>
-             </div>
-        );
-    }
-}*/
-ReactDOM.render(React.createElement(Hello, null), document.getElementById('root'));
+exports.App = App;
+//}
+ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
 
 
 /***/ }),
@@ -214,18 +166,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var Link = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js").Link;
+var _a = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js"), Link = _a.Link, withRouter = _a.withRouter;
 var Header = /** @class */ (function (_super) {
     __extends(Header, _super);
     function Header(props) {
         var _this = _super.call(this, props) || this;
         _this.handleSubmit = function (e) {
             e.preventDefault();
-            _this.setState({ submitted: true });
             var sokeTekst = _this.state.sokeTekst;
-            if (!sokeTekst) {
-                return;
-            }
+            var sokUrl = "/sok/tekst=" + sokeTekst;
+            _this.props.history.push(sokUrl);
         };
         _this.handleChange = function (e) {
             var tekst = e.target.value;
@@ -233,7 +183,6 @@ var Header = /** @class */ (function (_super) {
         };
         _this.state = {
             sokeTekst: "",
-            submitted: false
         };
         return _this;
     }
@@ -243,19 +192,19 @@ var Header = /** @class */ (function (_super) {
                 React.createElement("nav", { className: "navbar navbar-expand-lg" },
                     React.createElement("div", null,
                         React.createElement(Link, { to: "/" },
-                            React.createElement("img", { className: "img-fluid float-left", src: "./assets/vylogo.jpg" }))),
+                            React.createElement("img", { className: "img-fluid float-left", src: "./assets/vylogo.jpg", style: { height: "100px" } }))),
                     React.createElement("ul", { className: "navbar-nav mr-auto" },
                         React.createElement("li", { className: "nav-item" },
                             React.createElement(Link, { to: "/", className: "nav-link" }, "FAQ - Sp\u00F8rsm\u00E5l")),
                         React.createElement("li", { className: "nav-item" },
                             React.createElement(Link, { to: "/nyttSporsmal", className: "nav-link" }, "Nytt Sp\u00F8rsm\u00E5l"))),
                     React.createElement("form", { className: "form-inline my-2 my-lg-0", onSubmit: this.handleSubmit },
-                        React.createElement("input", { className: "form-control mr-sm-2", type: "search", placeholder: "S\u00F8ketekst", "aria-label": "S\u00F8k", onChange: this.handleChange, invalid: this.submitted && !this.sokeTekst }),
-                        React.createElement("button", { className: "btn btn-outline-success my-2 my-sm-0", type: "submit" }, "S\u00F8k"))))));
+                        React.createElement("input", { className: "form-control mr-sm-2", type: "search", placeholder: "S\u00F8ketekst", "aria-label": "S\u00F8k", onChange: this.handleChange, invalid: "true" }),
+                        React.createElement("button", { className: "btn btn-outline-secondary my-2 my-sm-0", type: "submit" }, "S\u00F8k"))))));
     };
     return Header;
 }(React.Component));
-exports.default = Header;
+exports.default = withRouter(Header);
 
 
 /***/ }),
@@ -36258,17 +36207,62 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var Sok = /** @class */ (function (_super) {
     __extends(Sok, _super);
-    function Sok() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function Sok(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            tekst: "testtekst",
+            valid: false
+        };
+        return _this;
     }
+    Sok.prototype.componentDidMount = function () {
+        this.sjekkSok();
+        console.log(this.props);
+    };
+    Sok.prototype.componentDidUpdate = function () {
+        if (!(this.props.match.params.tekst.substring(6) === this.state.tekst)) {
+            this.sjekkSok();
+        }
+        ;
+        console.log("comp oppdatert");
+    };
+    Sok.prototype.sjekkSok = function () {
+        if (this.props.match.params.tekst === "tekst=") {
+            //uten søkefrase
+            this.setState({
+                valid: false,
+                tekst: ""
+            });
+            console.log("uten søkefrase");
+        }
+        else {
+            //med søkefrase
+            var tekst = this.props.match.params.tekst;
+            var subTekst = tekst.substring(6);
+            this.setState({
+                tekst: subTekst,
+                valid: true
+            });
+            console.log("med søkefrase" + subTekst);
+        }
+    };
     Sok.prototype.render = function () {
-        return (React.createElement("h1", null, " S\u00F8k "));
+        var _a = this.state, valid = _a.valid, tekst = _a.tekst;
+        return (React.createElement("div", null,
+            React.createElement("h1", null,
+                " S\u00F8k",
+                valid && (React.createElement("span", null,
+                    ": ",
+                    tekst)),
+                " "),
+            !valid && (React.createElement("div", { className: "alert alert-info" }, "11Skriv noe inn i s\u00F8kefeltet for \u00E5 s\u00F8ke"))));
     };
     return Sok;
 }(React.Component));
-exports.default = Sok;
+exports.default = react_router_dom_1.withRouter(Sok);
 
 
 /***/ }),
