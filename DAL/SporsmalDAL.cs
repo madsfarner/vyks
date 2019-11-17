@@ -86,11 +86,8 @@ namespace VYKS.DAL
         {
             using (var db = new Db())
             {
-                Debug.WriteLine("Tekst: " + tekst);
                 var ord = tekst.Split(' ');
-                Debug.WriteLine("Array: " + ord.Length);
                 var sporsmal = db.Sporsmal.Include(s => s.Kategori).Where(data => ord.Any(x => data.Beskrivelse.Contains(x)) || ord.Any(x => data.Tittel.Contains(x)));
-                Debug.WriteLine("Query: " + sporsmal.Count());
                 return sporsmal.ToList();
                 try
                 {

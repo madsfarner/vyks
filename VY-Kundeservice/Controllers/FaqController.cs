@@ -7,11 +7,12 @@ using System.Web.Http;
 using VYKS.Model;
 using VYKS.BLL;
 using System.Diagnostics;
+using System.Web.Http.Cors;
 
 namespace VY_Kundeservice.Controllers
 {
 
-
+    [EnableCors(origins: "http://localhost:1337", headers: "*", methods: "*")]
     [RoutePrefix("api/kategori")]
     public class KategoriController : ApiController
     {
@@ -41,7 +42,7 @@ namespace VY_Kundeservice.Controllers
     }
 
 
-
+    [EnableCors(origins: "http://localhost:1337", headers: "*", methods: "*")]
     [RoutePrefix("api/sporsmal")]
     public class SporsmalController : ApiController
     {
@@ -93,7 +94,7 @@ namespace VY_Kundeservice.Controllers
         public HttpResponseMessage settInn(SporsmalInnDTO sporsmal)
         {
             var spmLogikk = new SporsmalLogikk();
-            Debug.WriteLine("SPM: " + sporsmal + ", " + sporsmal.Tittel);
+            Debug.WriteLine("spmPost", sporsmal);
             if (ModelState.IsValid)
             {
                 if (spmLogikk.settInnInnsendt(sporsmal)) return new HttpResponseMessage(HttpStatusCode.OK);

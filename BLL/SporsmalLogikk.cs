@@ -58,7 +58,25 @@ namespace VYKS.BLL
         public List<SporsmalDTO> sokEtterSporsmal (string tekst)
         {
             var spmDAL = new SporsmalDAL();
-            return tilDTO(spmDAL.sok(tekst));
+            var katDAL = new KategoriDAL();
+            var kategorier = katDAL.hentAlle();
+            List<Kategori> admKat = new List<Kategori>();
+            foreach(Kategori k in kategorier)
+            {
+                if (k.HevetTilgang) admKat.Add(k);
+            }
+            var alleSporsmal = spmDAL.sok(tekst);
+            List<Sporsmal> utSpm = new List<Sporsmal>();
+            foreach (Sporsmal s in alleSporsmal)
+            {
+                var erAdminSpm = false;
+                foreach( Kategori k in admKat)
+                {
+                    if (s.Kategori.Id == k.Id) erAdminSpm = true;
+                }
+                if (!erAdminSpm) utSpm.Add(s);
+            }
+            return tilDTO(utSpm);
         }
 
         public Sporsmal finn(int id)
