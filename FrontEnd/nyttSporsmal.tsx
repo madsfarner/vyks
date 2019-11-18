@@ -1,5 +1,6 @@
 ﻿import { environment } from "./environment";
 import axios from "axios";
+import SporsmalListe from "./sporsmalListe";
 
 declare var require: any
 
@@ -131,40 +132,7 @@ export default class NyttSporsmal extends React.Component {
                         {!(this.state.sporsmal == null || this.state.sporsmal.length == 0) && (
                             <div className="mt-4">
                                 <h4>Er du sikker på at ditt spørsmål ikke er blitt sendt inn allerede?</h4>
-                                <div className="accordion" id="accordionSporsmal">
-                                    {this.state.sporsmal.map((item, index) => (
-                                        <div className="card" key={index}>
-                                            <div className="card-header py-0" id={'heading' + index}>
-                                                <h2 className="mb-0">
-                                                    <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target={'#collapse' + index} aria-expanded="false" aria-controls={'collapse' + index}>
-                                                        <span className="badge badge-success p-2 mr-0"> <i className="fas fa-thumbs-up"></i>  {item.PoengPluss}</span>
-                                                        <span className="badge badge-danger p-2 mr-3"> <i className="fas fa-thumbs-down"></i>  {item.PoengMinus}</span>
-                                                        <b className="text-muted"># {(index + 1)}</b> - {item.Tittel}
-                                                    </button>
-                                                </h2>
-                                            </div>
-
-                                            <div id={'collapse' + index} className="collapse" aria-labelledby={'heading' + index} data-parent="#accordionSporsmal">
-                                                {!(item.Beskrivelse == null || item.Beskrivelse === "") && (
-                                                    <div className="card-body border-bottom">
-                                                        <b className="text-muted">Spørsmål: </b>{item.Beskrivelse}
-                                                    </div>
-                                                )}
-                                                <div className="card-body border-bottom">
-                                                    {item.Svar == null ? 'Dette spørsmålet har ikke blitt oppdatert med et svar enda' : (<span><b className="text-muted">Svar: </b> {item.Svar}</span>)}
-                                                </div>
-                                                <div className="card-body py-0">
-                                                    <div className="small m-0">
-                                                        Hjalp dette svaret deg? Hjelp andre ved å stemme dette svaret opp eller ned:
-                                                <button className="small btn btn-success py-0 my-1 px-2" onClick={() => this.handleVoteClick(item.Id, true)}>+</button>
-                                                        <button className="small btn btn-danger py-0 my-1 px-2" onClick={() => this.handleVoteClick(item.Id, false)}>-</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    ))}
-                                </div>
+                                <SporsmalListe sporsmal={this.state.sporsmal} />
                             </div>
 
                         )}

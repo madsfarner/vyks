@@ -38151,6 +38151,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var environment_1 = __webpack_require__(/*! ./environment */ "./environment.tsx");
 var axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+var sporsmalListe_1 = __webpack_require__(/*! ./sporsmalListe */ "./sporsmalListe.tsx");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var NyttSporsmal = /** @class */ (function (_super) {
     __extends(NyttSporsmal, _super);
@@ -38232,7 +38233,6 @@ var NyttSporsmal = /** @class */ (function (_super) {
             this.hentKat();
     };
     NyttSporsmal.prototype.render = function () {
-        var _this = this;
         if (this.state.serverSpmOk) {
             return (React.createElement("div", null,
                 React.createElement("h1", { className: "mt-5" }, " Nytt Sp\u00F8rsm\u00E5l "),
@@ -38261,38 +38261,7 @@ var NyttSporsmal = /** @class */ (function (_super) {
                     this.state.error != "" && (React.createElement("div", { className: "alert alert-danger" }, this.state.error)),
                     !(this.state.sporsmal == null || this.state.sporsmal.length == 0) && (React.createElement("div", { className: "mt-4" },
                         React.createElement("h4", null, "Er du sikker p\u00E5 at ditt sp\u00F8rsm\u00E5l ikke er blitt sendt inn allerede?"),
-                        React.createElement("div", { className: "accordion", id: "accordionSporsmal" }, this.state.sporsmal.map(function (item, index) { return (React.createElement("div", { className: "card", key: index },
-                            React.createElement("div", { className: "card-header py-0", id: 'heading' + index },
-                                React.createElement("h2", { className: "mb-0" },
-                                    React.createElement("button", { className: "btn btn-link collapsed", type: "button", "data-toggle": "collapse", "data-target": '#collapse' + index, "aria-expanded": "false", "aria-controls": 'collapse' + index },
-                                        React.createElement("span", { className: "badge badge-success p-2 mr-0" },
-                                            " ",
-                                            React.createElement("i", { className: "fas fa-thumbs-up" }),
-                                            "  ",
-                                            item.PoengPluss),
-                                        React.createElement("span", { className: "badge badge-danger p-2 mr-3" },
-                                            " ",
-                                            React.createElement("i", { className: "fas fa-thumbs-down" }),
-                                            "  ",
-                                            item.PoengMinus),
-                                        React.createElement("b", { className: "text-muted" },
-                                            "# ",
-                                            (index + 1)),
-                                        " - ",
-                                        item.Tittel))),
-                            React.createElement("div", { id: 'collapse' + index, className: "collapse", "aria-labelledby": 'heading' + index, "data-parent": "#accordionSporsmal" },
-                                !(item.Beskrivelse == null || item.Beskrivelse === "") && (React.createElement("div", { className: "card-body border-bottom" },
-                                    React.createElement("b", { className: "text-muted" }, "Sp\u00F8rsm\u00E5l: "),
-                                    item.Beskrivelse)),
-                                React.createElement("div", { className: "card-body border-bottom" }, item.Svar == null ? 'Dette spørsmålet har ikke blitt oppdatert med et svar enda' : (React.createElement("span", null,
-                                    React.createElement("b", { className: "text-muted" }, "Svar: "),
-                                    " ",
-                                    item.Svar))),
-                                React.createElement("div", { className: "card-body py-0" },
-                                    React.createElement("div", { className: "small m-0" },
-                                        "Hjalp dette svaret deg? Hjelp andre ved \u00E5 stemme dette svaret opp eller ned:",
-                                        React.createElement("button", { className: "small btn btn-success py-0 my-1 px-2", onClick: function () { return _this.handleVoteClick(item.Id, true); } }, "+"),
-                                        React.createElement("button", { className: "small btn btn-danger py-0 my-1 px-2", onClick: function () { return _this.handleVoteClick(item.Id, false); } }, "-")))))); })))),
+                        React.createElement(sporsmalListe_1.default, { sporsmal: this.state.sporsmal }))),
                     (this.state.sporsmal == null || this.state.sporsmal.length == 0) && (React.createElement("button", { type: "submit", className: "btn btn-primary mb-5" }, " Send inn ")),
                     !(this.state.sporsmal == null || this.state.sporsmal.length == 0) && (React.createElement("div", { className: "mb-5 mt-2" },
                         " Jeg finner ikke mitt sp\u00F8rsm\u00E5l i listen: ",
@@ -38333,6 +38302,7 @@ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 var environment_1 = __webpack_require__(/*! ./environment */ "./environment.tsx");
+var sporsmalListe_1 = __webpack_require__(/*! ./sporsmalListe */ "./sporsmalListe.tsx");
 var Sok = /** @class */ (function (_super) {
     __extends(Sok, _super);
     function Sok(props) {
@@ -38407,33 +38377,7 @@ var Sok = /** @class */ (function (_super) {
                         React.createElement("span", { className: "sr-only" }, "Loading..."))),
                 React.createElement("div", { className: "pl-2 text-left" },
                     React.createElement("h4", null, " Laster inn sp\u00F8rsm\u00E5l... ")))),
-            !(sporsmal == null || sporsmal.length == 0) && (React.createElement("div", { className: "accordion", id: "accordionSporsmal" }, this.state.sporsmal.map(function (item, index) { return (React.createElement("div", { className: "card", key: index },
-                React.createElement("div", { className: "card-header py-0", id: 'heading' + index },
-                    React.createElement("h2", { className: "mb-0" },
-                        React.createElement("button", { className: "btn btn-link collapsed", type: "button", "data-toggle": "collapse", "data-target": '#collapse' + index, "aria-expanded": "false", "aria-controls": 'collapse' + index },
-                            React.createElement("span", { className: "badge badge-success p-2 mr-0" },
-                                " ",
-                                React.createElement("i", { className: "fas fa-thumbs-up" }),
-                                "  ",
-                                item.PoengPluss),
-                            React.createElement("span", { className: "badge badge-danger p-2 mr-3" },
-                                " ",
-                                React.createElement("i", { className: "fas fa-thumbs-down" }),
-                                "  ",
-                                item.PoengMinus),
-                            React.createElement("b", { className: "text-muted" },
-                                "# ",
-                                (index + 1)),
-                            " - ",
-                            item.Tittel))),
-                React.createElement("div", { id: 'collapse' + index, className: "collapse", "aria-labelledby": 'heading' + index, "data-parent": "#accordionSporsmal" },
-                    !(item.Beskrivelse == null || item.Beskrivelse === "") && (React.createElement("div", { className: "card-body border-bottom" },
-                        React.createElement("b", { className: "text-muted" }, "Sp\u00F8rsm\u00E5l: "),
-                        item.Beskrivelse)),
-                    React.createElement("div", { className: "card-body" }, item.Svar == null ? 'Dette spørsmålet har ikke blitt oppdatert med et svar enda' : (React.createElement("span", null,
-                        React.createElement("b", { className: "text-muted" }, "Svar: "),
-                        " ",
-                        item.Svar)))))); }))),
+            !(sporsmal == null || sporsmal.length == 0) && (React.createElement(sporsmalListe_1.default, { sporsmal: this.state.sporsmal })),
             (sporsmal != null && sporsmal.length == 0) && (React.createElement("h3", null, " S\u00F8ket ga ingen resultater. Du kan sende inn et nytt sp\u00F8rsm\u00E5l ved \u00E5 trykk \"Nytt Sp\u00F8rsm\u00E5l\""))));
     };
     return Sok;
@@ -38468,6 +38412,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var environment_1 = __webpack_require__(/*! ./environment */ "./environment.tsx");
 var axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+var sporsmalListe_1 = __webpack_require__(/*! ./sporsmalListe */ "./sporsmalListe.tsx");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var Sporsmal = /** @class */ (function (_super) {
     __extends(Sporsmal, _super);
@@ -38485,10 +38430,8 @@ var Sporsmal = /** @class */ (function (_super) {
                 valgtKat: true,
                 submitted: true
             });
-            console.log("ID: " + id + ", valgtKategori: ", kat);
             var url = environment_1.environment.spmUrl + id + "/sporsmal";
             axios_1.default.get(url).then(function (res) {
-                console.log(res.data);
                 _this.setState({
                     submitted: false,
                     sporsmal: res.data
@@ -38528,27 +38471,6 @@ var Sporsmal = /** @class */ (function (_super) {
             sporsmal: null
         });
     };
-    Sporsmal.prototype.handleVoteClick = function (id, up) {
-        var _this = this;
-        var url = environment_1.environment.stemUrl + id + (up ? "/opp" : "/ned");
-        console.log("URL: " + url);
-        axios_1.default.get(url).then(function (res) {
-            console.log(res);
-            var spm = _this.state.sporsmal;
-            var sporsmalet;
-            var index;
-            for (var i = 0; i < spm.length; i++) {
-                if (spm[i].Id == id) {
-                    sporsmalet = spm[i];
-                    index = i;
-                }
-            }
-            (up ? spm[index].PoengPluss++ : spm[index].PoengMinus++);
-            _this.setState({
-                sporsmal: spm
-            });
-        });
-    };
     Sporsmal.prototype.render = function () {
         var _this = this;
         var _a = this.state, kategorier = _a.kategorier, sporsmal = _a.sporsmal, submitted = _a.submitted, valgtKat = _a.valgtKat, valgtKategori = _a.valgtKategori;
@@ -38566,38 +38488,7 @@ var Sporsmal = /** @class */ (function (_super) {
                             React.createElement("span", { className: "sr-only" }, "Loading..."))),
                     React.createElement("div", { className: "pl-2 text-left" },
                         React.createElement("h4", null, " Laster inn sp\u00F8rsm\u00E5l... ")))),
-                sporsmal != null && (React.createElement("div", { className: "accordion", id: "accordionSporsmal" }, this.state.sporsmal.map(function (item, index) { return (React.createElement("div", { className: "card", key: index },
-                    React.createElement("div", { className: "card-header py-0", id: 'heading' + index },
-                        React.createElement("h2", { className: "mb-0" },
-                            React.createElement("button", { className: "btn btn-link collapsed", type: "button", "data-toggle": "collapse", "data-target": '#collapse' + index, "aria-expanded": "false", "aria-controls": 'collapse' + index },
-                                React.createElement("span", { className: "badge badge-success p-2 mr-0" },
-                                    " ",
-                                    React.createElement("i", { className: "fas fa-thumbs-up" }),
-                                    "  ",
-                                    item.PoengPluss),
-                                React.createElement("span", { className: "badge badge-danger p-2 mr-3" },
-                                    " ",
-                                    React.createElement("i", { className: "fas fa-thumbs-down" }),
-                                    "  ",
-                                    item.PoengMinus),
-                                React.createElement("b", { className: "text-muted" },
-                                    "# ",
-                                    (index + 1)),
-                                " - ",
-                                item.Tittel))),
-                    React.createElement("div", { id: 'collapse' + index, className: "collapse", "aria-labelledby": 'heading' + index, "data-parent": "#accordionSporsmal" },
-                        !(item.Beskrivelse == null || item.Beskrivelse === "") && (React.createElement("div", { className: "card-body border-bottom" },
-                            React.createElement("b", { className: "text-muted" }, "Sp\u00F8rsm\u00E5l: "),
-                            item.Beskrivelse)),
-                        React.createElement("div", { className: "card-body border-bottom" }, item.Svar == null ? 'Dette spørsmålet har ikke blitt oppdatert med et svar enda' : (React.createElement("span", null,
-                            React.createElement("b", { className: "text-muted" }, "Svar: "),
-                            " ",
-                            item.Svar))),
-                        React.createElement("div", { className: "card-body py-0" },
-                            React.createElement("div", { className: "small m-0" },
-                                "Hjalp dette svaret deg? Hjelp andre ved \u00E5 stemme dette svaret opp eller ned:",
-                                React.createElement("button", { className: "small btn btn-success py-0 my-1 px-2", onClick: function () { return _this.handleVoteClick(item.Id, true); } }, "+"),
-                                React.createElement("button", { className: "small btn btn-danger py-0 my-1 px-2", onClick: function () { return _this.handleVoteClick(item.Id, false); } }, "-")))))); }))),
+                sporsmal != null && (React.createElement(sporsmalListe_1.default, { sporsmal: this.state.sporsmal })),
                 React.createElement("button", { className: "btn btn-light border py-1 mt-4", onClick: function () { return _this.tilbakeTilKat(); } }, "Tilbake til kategorier")));
         }
         else {
@@ -38624,6 +38515,123 @@ var Sporsmal = /** @class */ (function (_super) {
     return Sporsmal;
 }(React.Component));
 exports.default = Sporsmal;
+
+
+/***/ }),
+
+/***/ "./sporsmalListe.tsx":
+/*!***************************!*\
+  !*** ./sporsmalListe.tsx ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var environment_1 = __webpack_require__(/*! ./environment */ "./environment.tsx");
+var axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var SporsmalListe = /** @class */ (function (_super) {
+    __extends(SporsmalListe, _super);
+    function SporsmalListe(props) {
+        var _this = _super.call(this, props) || this;
+        _this.erStemt = function (spmId) {
+            for (var i = 0; i < _this.state.sporsmalStemt.length; i++) {
+                if (spmId == _this.state.sporsmalStemt[i])
+                    return true;
+                console.log(spmId + "er blitt stemt på");
+            }
+            return false;
+        };
+        _this.state = {
+            sporsmal: _this.props.sporsmal,
+            sporsmalStemt: [-1]
+        };
+        _this.erStemt = _this.erStemt.bind(_this);
+        return _this;
+    }
+    SporsmalListe.prototype.handleVoteClick = function (id, up) {
+        var _this = this;
+        var url = environment_1.environment.stemUrl + id + (up ? "/opp" : "/ned");
+        axios_1.default.get(url).then(function (res) {
+            var spm = _this.state.sporsmal;
+            var index;
+            for (var i = 0; i < spm.length; i++) {
+                if (spm[i].Id == id) {
+                    index = i;
+                }
+            }
+            (up ? spm[index].PoengPluss++ : spm[index].PoengMinus++);
+            var spmStemt = _this.state.sporsmalStemt;
+            spmStemt.push(id);
+            _this.setState({
+                sporsmal: spm,
+                sporsmalStemt: spmStemt
+            });
+            var spmStemtJson = JSON.stringify(spmStemt);
+            localStorage.setItem("spmStemtArray", spmStemtJson);
+        });
+    };
+    SporsmalListe.prototype.componentDidMount = function () {
+        var json = localStorage.getItem("spmStemtArray");
+        var spmStemtJson = (json == null ? "[-1]" : json);
+        var spmStemt = JSON.parse(spmStemtJson);
+        console.log("spmStemt: ", spmStemt);
+        this.setState({ sporsmalStemt: spmStemt });
+    };
+    SporsmalListe.prototype.render = function () {
+        var _this = this;
+        return (React.createElement("div", { className: "accordion", id: "accordionSporsmal" }, this.state.sporsmal.map(function (item, index) { return (React.createElement("div", { className: "card", key: index },
+            React.createElement("div", { className: "card-header py-0", id: 'heading' + index },
+                React.createElement("h2", { className: "mb-0" },
+                    React.createElement("button", { className: "btn btn-link collapsed", type: "button", "data-toggle": "collapse", "data-target": '#collapse' + index, "aria-expanded": "false", "aria-controls": 'collapse' + index },
+                        React.createElement("span", { className: "badge badge-success p-2 mr-0" },
+                            " ",
+                            React.createElement("i", { className: "fas fa-thumbs-up" }),
+                            "  ",
+                            item.PoengPluss),
+                        React.createElement("span", { className: "badge badge-danger p-2 mr-3" },
+                            " ",
+                            React.createElement("i", { className: "fas fa-thumbs-down" }),
+                            "  ",
+                            item.PoengMinus),
+                        React.createElement("b", { className: "text-muted" },
+                            "# ",
+                            (index + 1)),
+                        " - ",
+                        item.Tittel))),
+            React.createElement("div", { id: 'collapse' + index, className: "collapse", "aria-labelledby": 'heading' + index, "data-parent": "#accordionSporsmal" },
+                !(item.Beskrivelse == null || item.Beskrivelse === "") && (React.createElement("div", { className: "card-body border-bottom" },
+                    React.createElement("b", { className: "text-muted" }, "Sp\u00F8rsm\u00E5l: "),
+                    item.Beskrivelse)),
+                React.createElement("div", { className: "card-body border-bottom" }, item.Svar == null ? 'Dette spørsmålet har ikke blitt oppdatert med et svar enda' : (React.createElement("span", null,
+                    React.createElement("b", { className: "text-muted" }, "Svar: "),
+                    " ",
+                    item.Svar))),
+                _this.erStemt(item.Id) ? (React.createElement("div", { className: "card-body py-0" },
+                    React.createElement("div", { className: "small m-0" }, "Du har allerede stemt p\u00E5 dette sp\u00F8rsm\u00E5let"))) : (React.createElement("div", { className: "card-body py-0" },
+                    React.createElement("div", { className: "small m-0" },
+                        "Hjalp dette svaret deg? Hjelp andre ved \u00E5 stemme dette svaret opp eller ned:",
+                        React.createElement("button", { className: "small btn btn-success py-0 my-1 px-2", onClick: function () { return _this.handleVoteClick(item.Id, true); } }, "+"),
+                        React.createElement("button", { className: "small btn btn-danger py-0 my-1 px-2", onClick: function () { return _this.handleVoteClick(item.Id, false); } }, "-"))))))); })));
+    };
+    return SporsmalListe;
+}(React.Component));
+exports.default = SporsmalListe;
 
 
 /***/ })
